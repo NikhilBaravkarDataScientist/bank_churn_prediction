@@ -5,26 +5,37 @@ import joblib
 # from tensorflow.keras.models import load_model
 
 app = Flask(__name__)
+import sklearn.metrics._dist_metrics as dist_metrics
+
+class EuclideanDistance:
+    def __reduce__(self):
+        return (getattr, (dist_metrics, "EuclideanDistance"))
+
+dist_metrics.EuclideanDistance = EuclideanDistance
 
 # Load saved models
 dt_model = joblib.load('models/nate_decision_tree.sav')
 # dl_model = joblib.load('models/imblearn_pipeline.sav')
 # dl_model.named_steps['kerasclassifier'].model = load_model('models/keras_model.h5')
+
 knn_model = joblib.load('models/nate_knn.sav')
+'''
 lr_model = joblib.load('models/nate_logistic_regression.sav')
 rf_model = joblib.load('models/nate_random_forest.sav')
 svm_model = joblib.load('models/SVM_model.sav')
 xgb_model = joblib.load('models/XGBoost_model.sav')
-
+'''
 # Dictionary of all loaded models
 loaded_models = {
     'dt': dt_model,
     #'dl': dl_model,
+    #
     'knn': knn_model,
-    'lr': lr_model,
-    'rf': rf_model,
-    'svm': svm_model,
-    'xgb': xgb_model
+    #'lr': lr_model,
+    #'rf': rf_model,
+    #'svm': svm_model,
+    #'xgb': xgb_model
+    
 }
 
 # Function to decode predictions 
@@ -38,15 +49,17 @@ def home():
     result = [{'model':'Decision Tree', 'prediction':' '},
               #{'model':'Deep Learning', 'prediction':' '},
               {'model': 'K-nearest Neighbors', 'prediction': ' '},
-              {'model': 'Logistic Regression', 'prediction': ' '},
-              {'model': 'Random Forest', 'prediction': ' '},
-              {'model': 'SVM', 'prediction': ' '},
-              {'model': 'XGBoost', 'prediction': ' '}]
+              #{'model': 'Logistic Regression', 'prediction': ' '},
+              #{'model': 'Random Forest', 'prediction': ' '},
+              #{'model': 'SVM', 'prediction': ' '},
+              #{'model': 'XGBoost', 'prediction': ' '}
+              ]
     
     # Create main dictionary
     maind = {}
     maind['customer'] = {}
     maind['predictions'] = result
+    
 
     return render_template('index.html', maind=maind)
 
@@ -94,10 +107,10 @@ def predict():
             {'model':'Decision Tree', 'prediction':predl[0]},
             #{'model':'Deep Learning', 'prediction':predl[1]},
             {'model': 'K-nearest Neighbors', 'prediction': predl[1]},
-            {'model': 'Logistic Regression', 'prediction': predl[2]},
-            {'model': 'Random Forest', 'prediction': predl[3]},
-            {'model': 'SVM', 'prediction': predl[4]},
-            {'model': 'XGBoost', 'prediction': predl[5]}
+            #{'model': 'Logistic Regression', 'prediction': predl[2]},
+            #{'model': 'Random Forest', 'prediction': predl[3]},
+            #{'model': 'SVM', 'prediction': predl[4]},
+            #{'model': 'XGBoost', 'prediction': predl[5]}
             ]
 
     # Create main dictionary

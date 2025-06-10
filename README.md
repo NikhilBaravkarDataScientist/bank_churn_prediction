@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 The app is deployed to Render, and can be found at this [URL](https://bank-churn-predictions.onrender.com)
 
 Our full presentation deck [can be found here](https://docs.google.com/presentation/d/1AiL9Zo9WBySLQkjjMcIHuZp4wEC9UnLtXjSaclaICBE/edit?usp=sharing).
@@ -45,3 +46,6 @@ Finally, using Flask and HTML/CSS, we created the user-facing app to add informa
 For a deeper dive into our analysis and process, take a look at [our full presentation](https://docs.google.com/presentation/d/1AiL9Zo9WBySLQkjjMcIHuZp4wEC9UnLtXjSaclaICBE/edit?usp=sharing).
 
  
+=======
+# bank_churn_prediction
+>>>>>>> ef6543f9ce01fb81c5fbdae738a7a9b6ba478f44
